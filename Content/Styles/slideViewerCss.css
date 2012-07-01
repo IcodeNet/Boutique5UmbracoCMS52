@@ -1,0 +1,90 @@
+.gallery {
+	width: 912px;
+	margin: -86px auto 0 -35px;
+	position: relative;
+	padding: 0 0 7px 0;
+}
+.svwp {
+	width: 50px; 
+	height: 20px; 
+	background: #fff;
+} 
+.svwp ul {
+	position: relative; 
+	left: -999em;
+}
+.slideViewer { 
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	background: #fff;
+}
+.slideViewer ul { 
+	position: relative;
+	left: 0;
+	top: 0;
+	margin: 0;
+	padding: 0;
+}
+.slideViewer ul li { 
+	float:left;
+	list-style: none;
+}
+.slideViewer ul li img {
+	width: 912px;
+	height: 435px;
+}
+#ui0 {
+	width: 912px !important;
+	height: 111px !important;
+	position: absolute !important;
+	left: 0 !important;
+	top: 284px !important;
+	padding: 10px 0;
+	float: left;
+	background: url(../images/bgi/bg-transparent1.png) repeat left top;
+}
+.thumbSlider { 
+	width: 847px !important;
+	height: 111px !important;
+	position: absolute !important;
+	left: 33px !important;
+	top: 10px !important;
+}
+.thumbSlider ul {
+	margin: 0 !important;
+	padding: 0 !important;
+	height: 111px !important;
+}
+.thumbSlider ul li {
+	list-style: none;
+	float:left;
+	height: 111px !important;
+	margin: 0 !important
+}
+.thumbSlider ul li img {
+	width: 121px !important;
+	height: 111px !important;
+	border: 0;
+	display: block;
+	padding: 0;	
+}
+a.left, 
+a.right {
+	z-index: 999999;
+	position: absolute !important;
+	width: 15px;
+	height: 15px !important;
+	text-indent: -9999em;
+	top: 55PX;
+}
+a.left {
+	left: 10px;
+	background: url(../images/bgi/gallery-buttons.png) no-repeat left top;
+}
+a.right {
+	right: 10px;
+	margin: 0 !important;
+	background: url(../images/bgi/gallery-buttons.png) no-repeat right top;
+}

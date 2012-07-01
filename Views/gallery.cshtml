@@ -1,0 +1,73 @@
+@inherits RenderViewPage
+@using System.Web.Mvc.Html;
+@using Umbraco.Cms.Web;
+@{
+	Layout = "_Layout.cshtml";
+	ViewBag.Title = DynamicModel.SiteName ?? CurrentPage.Name;
+
+	try {ViewBag.BackgroundImage = @Umbraco.GetMediaUrl(Model.Id, "backgroundImage");}catch{}
+	 var rootNode = DynamicModel.AncestorsOrSelf.Last();
+	 var galleriesNode = rootNode.Children.Where("NodeTypeAlias == @0", "Gallery");
+}
+@section Stylesheets
+{
+<!-- must have -->
+<link href="@Url.Content("~")Content/Styles/ThumbnailsBanner.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+}
+
+@section ScriptsIncludes
+{
+<!-- must have -->
+<script src="@Url.Content("~/Scripts/JQuery-banner-rotator/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/JQuery-banner-rotator/jquery.ui.touch-punch.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/JQuery-banner-rotator/allinone_thumbnailsBanner.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/JQuery-banner-rotator/reflection.js")" type="text/javascript"></script>
+}
+
+@section Scripts
+{
+ <!-- Inline scripts --> 
+ $(function() {
+
+                $('#allinone_thumbnailsBanner').allinone_thumbnailsBanner({
+                        skin: 'cool',
+			thumbsFolder: '@Url.Content("~")'+'Content/media/thumbs',
+                        numberOfThumbsPerScreen:7,
+                        width: 842,
+                        height: 318	
+
+                });
+		});
+}
+
+<section id="main">
+   <section class="wrapper">
+        <section id="inner_nav">
+          
+        </section>
+       
+       <div id="allinone_thumbnailsBanner" style="display:none;">
+	<!-- IMAGES --> 
+@{
+      if (galleriesNode != null)
+      {
+          foreach (var galleryImage in DynamicModel.Children){
+             <img src="@Umbraco.GetMediaUrl(galleryImage.Id, "image")" alt="@galleryImage.ImageAltText" data-text-id="#@galleryImage.Name"/>
+	}
+
+	<!-- TEXTS -->
+ 	foreach (var galleryImage in DynamicModel.Children){
+ 	<div id="@galleryImage.Name" class="allinone_thumbnailsBanner_texts">
+ 	  <div class="allinone_thumbnailsBanner_text_line textElement11_cool" data-initial-left="400" data-initial-top="10" data-final-left="50" data-final-top="200" data-duration="0.5" data-fade-start="0" data-delay="0">@Html.Raw(@galleryImage.imageDescriptiveText)
+	  </div>
+        </div>   
+	}
+      }
+}
+ </div>   
+
+
+</section>
+</section>
+ 

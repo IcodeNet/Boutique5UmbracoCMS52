@@ -1,0 +1,23 @@
+@inherits RenderViewPage
+@using Umbraco.Cms.Web;
+
+@{
+ 
+var root = DynamicModel.AncestorsOrSelf.Last();
+var homeClass = (DynamicModel.Name == "Homepage" ? "active " : ""); 
+
+}
+ <!--=========================================header=============================================-->
+
+<header id="header">
+<div class="wrapper">
+ 	<h1 id="logo"><a href="@Url.Content("~/")"><img src="@Url.Content("~/Content/images/logo.png")" alt=""></a></h1>
+	@Html.Partial("Rightheader")
+</div>		
+<nav id="main_nav">
+      <div class="wrapper">
+      	@Html.Partial("Navigation")
+      </div>
+</nav>
+
+</header>

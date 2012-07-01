@@ -1,0 +1,23 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+@{  
+    var showError = RequestParameterHelper.Instance.GetBooleanOrDefault("debug", false);
+    var error = Model.Exception;    
+
+    if (error != null)
+    {
+        var controller = Model.ControllerName;
+        var action = Model.ActionName;
+        var culprit = controller + "/" + action;        
+        LogHelper.Error<UmbracoController>("Error rendering " + culprit, error);
+    }
+}
+
+
+<h2>
+    Sorry, an error occurred while processing your request.
+</h2>

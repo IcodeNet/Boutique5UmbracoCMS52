@@ -1,0 +1,50 @@
+﻿@model CultivJupiterContactForm.ViewModel.ContactViewModel
+@if (Model.SubmitHandled)
+{
+    <p>
+        Thanks, we'll get back to you soon.</p>
+}
+else
+{
+    using (Html.BeginUmbracoForm("HandleNewsletterFormSubmit", new Guid("BB45D8A4-DD88-444E-89A6-A64351EFBE6A")))
+    {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Your Details</legend>
+        <p> @Html.LabelFor(model => model.Name)
+          
+                @Html.TextBoxFor(model => model.Name, new { @class = "text", placeholder = "Name" })
+                @Html.ValidationMessageFor(model => model.Name)
+        </p>
+        
+		
+        <p>
+           
+                @Html.LabelFor(model => model.Email) 
+            @Html.TextBoxFor(model => model.Email, new { @class = "text", placeholder = "Name" })
+            @Html.ValidationMessageFor(model => model.Email)</p>
+          
+        <p class="other">
+            @Html.LabelFor(model => model.Other)
+            @Html.EditorFor(model => model.Other)
+            @Html.ValidationMessageFor(model => model.Other)</p>
+           
+        <p>
+             
+                @Html.LabelFor(model => model.Message) 
+            @Html.TextAreaFor(model => model.Message, new { @class = "text", placeholder = "Name" })
+            @Html.ValidationMessageFor(model => model.Message)</p>
+           
+        <p>
+            <input type="submit" id="button_submit" onclick="" value="Send email" name="submit">
+        </p>
+
+    </fieldset>
+    <style type="text/css">
+        .other
+        {
+            display: none;
+        }
+    </style>
+    }
+}

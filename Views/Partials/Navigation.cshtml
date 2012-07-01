@@ -1,0 +1,54 @@
+@inherits RenderViewPage
+@using Umbraco.Cms.Web;
+
+ @{
+ 
+ @* Walk up the tree from the current page to get the root node *@
+    var Homepage = DynamicModel.AncestorsOrSelf.Last();
+     
+ }
+<div class="menu-container">
+<ul class="memu-root" id="nav">
+ 
+   
+  @*@Homepage.Children.Where("Visible == @0", "true").Count()*@
+  
+  @foreach (var topLevelPage in Homepage.Children.Where("Visible == @0", "true"))
+  {
+      
+      
+      if (topLevelPage.Template != null)  
+      {
+           
+           
+            var activeClass = (DynamicModel.Id == topLevelPage.Id ? "active " : ""); 
+            //@DynamicModel.Id
+            // @topLevelPage.Id
+            var topLevelPageName = topLevelPage.Name ?? "(No name yet)";
+            
+             if (topLevelPage.Children.Count() > 0)
+               {
+                 <li><a class="@activeClass" href="@topLevelPage.Url">@topLevelPageName </a> 
+                  <ul class="menu">
+                   @foreach (var subpage in topLevelPage.Children)
+                   {
+                    if (subpage.Template != null)
+                    {
+                      <li><a href="@subpage.Url">@subpage.Name</a></li>
+                     }
+                   }
+                  </ul>
+                 </li>
+               }
+               else
+              {
+               <li><a class="@activeClass" href="@topLevelPage.Url">@topLevelPageName </a></li>
+              }
+                          
+         
+      }
+  }
+ 
+  </ul>
+  </div>
+  

@@ -1,0 +1,81 @@
+@inherits RenderViewPage
+@using Umbraco.Cms.Web;
+
+ 
+
+
+<div id="right_header">
+<form target="_blank" onsubmit="return bookingOnSubmit(this);" action="https://boutiquefiverhodes.reserve-online.net" method="get">
+<input type="hidden" name="lang" value="en_GB">
+
+          <p class="language">
+            <a href="#">GR</a>
+            <a href="#">EN</a>
+          </p>
+          <div id="search_wrap">
+            <h3>availability search</h3>
+            <div class="block">
+              <label>Check in</label>
+              <div class="date_s">
+               <input class="jquery-selectbox" id="checkin" name="checkin" size="12" maxlength="10" placeholder="dd/mm/yyyy" >
+              </div>              
+              
+            </div>
+            <div class="block">
+              <label for="nights">Staying for</label>
+               
+	<select id="nights" name="nights" class="default-usage-select">
+		<option value="1" selected="selected">1 night</option>
+		<option value="2">2 nights</option>
+		<option value="3">3 nights</option>
+		<option value="4">4 nights</option>
+		<option value="5">5 nights</option>
+		<option value="6">6 nights</option>
+		<option value="7">7 nights</option>
+                <option value="8">8 nights</option>
+                <option value="9">9 nights</option>
+                <option value="10">10 nights</option>
+                <option value="11">11 nights</option>
+                <option value="12">12 nights</option>
+                <option value="13">13 nights</option>
+                <option value="14">14 nights</option>
+                <option value="15">15 nights</option>
+                <option value="16">16 nights</option>
+                <option value="17">17 nights</option>
+                <option value="18">18 nights</option>
+                <option value="19">19 nights</option>
+                <option value="20">20 nights</option>
+	</select>
+  
+            </div>
+            <div class="block">
+             <label for="rooms">Rooms</label>
+	<select id="rooms" name="rooms" class="default-usage-select">
+		<option value="1" selected>1 room</option>
+                <option value="2">2 rooms</option>
+                <option value="3">3 rooms</option>
+                <option value="4">4 rooms</option>
+                <option value="5">5 rooms</option>
+	</select>
+
+	
+            </div>
+            <div class="block">
+             <label for="adults">Adults per room</label>
+	<select id="adults" name="adults" class="default-usage-select">
+		<option value="1">1 adult</option>
+		<option value="2" selected="selected">2 adults</option>
+		<option value="3">3 adults</option>
+		<option value="4">4 adults</option>
+                <option value="5">5 adults</option>
+                <option value="6">6 adults</option>
+                <option value="7">7 adults</option>
+	</select>
+           </div>
+	
+            <div class="block">
+              <label>&nbsp; </label>
+              <input name="" type="submit"   value="Search" id="button_search">
+            </div>
+          </div>
+          </form>

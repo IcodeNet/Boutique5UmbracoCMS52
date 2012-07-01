@@ -1,0 +1,15 @@
+@inherits RenderViewPage
+@using System.Web.Mvc.Html
+@using Umbraco.Cms.Web;
+@{
+    	Layout = "_Layout.cshtml";
+	ViewBag.Title = DynamicModel.SiteName ?? CurrentPage.Name;
+	try {ViewBag.BackgroundImage = @Umbraco.GetMediaUrl(Model.Id, "backgroundImage");}catch{}
+}
+
+<section class="wrapper">
+    <section class="home_content">
+  	@Html.Raw(DynamicModel.BodyText)
+      
+  </section>
+</section>

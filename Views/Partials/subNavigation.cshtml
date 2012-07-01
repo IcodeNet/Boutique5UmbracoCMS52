@@ -1,0 +1,42 @@
+@inherits RenderViewPage
+@using Umbraco.Cms.Web;
+@{
+ 
+ @* Walk up the tree from the current page to get the root node *@
+    var currentPage = DynamicModel;
+     
+ }
+  <ul>
+@foreach (var topLevelPage in currentPage.Children)
+  {
+      if (@topLevelPage.Template != null)
+      {
+		  var activeClass = (DynamicModel.Id == topLevelPage.Id ? "active " : ""); 
+		  //@DynamicModel.Id
+		  // @topLevelPage.Id
+          var topLevelPageName = topLevelPage.Name ?? "(No name yet)";
+          
+           if (topLevelPage.Children.Count() > 0)
+             {
+             
+               <li><a class="@activeClass" href="@topLevelPage.Url">@topLevelPageName </a> 
+                <ul>
+                 @foreach (var subpage in topLevelPage.Children)
+                 {
+                 if (subpage.Template != null)
+                  {
+                    <li><a href="@subpage.Url">@subpage.Name</a></li>
+                  }
+                 }
+                </ul>
+               </li>
+             }
+             else
+            {
+             <li><a class="@activeClass" href="@topLevelPage.Url">@topLevelPageName </a></li>
+            }
+                        
+          
+      }
+  }
+   </ul>

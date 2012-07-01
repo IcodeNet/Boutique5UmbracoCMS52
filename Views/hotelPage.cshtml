@@ -1,0 +1,66 @@
+@inherits RenderViewPage
+@using System.Web.Mvc.Html;
+@using Umbraco.Cms.Web;
+@{
+	Layout = "_Layout.cshtml";
+	ViewBag.Title = DynamicModel.SiteName ?? @DynamicModel.Title;
+	try {ViewBag.BackgroundImage = @Umbraco.GetMediaUrl(Model.Id, "backgroundImage");}catch{}
+	var imageUrl = String.Empty;	 
+	try {imageUrl = @Umbraco.GetMediaUrl(Model.Id, "image");}catch{}
+	 
+}
+
+
+@section Stylesheets
+{
+
+}
+
+@section ScriptsIncludes
+{
+
+}
+
+@section Scripts
+{
+
+}
+
+@section LastScriptsOnPage
+{
+	$(document).ready(function($){ $('#scrollbar1').tinyscrollbar(); });
+}
+
+
+<section id="main">
+    <section class="wrapper">
+        <section id="inner_nav">
+           @Html.Partial("SubNavigation")
+        </section>
+         <section id="inner_content">
+             <h2>@DynamicModel.Title</h2>
+              @if(!string.IsNullOrEmpty(imageUrl)){
+                <div class="image_holder1">
+                    <img src="@Umbraco.GetMediaUrl(Model.Id, "image")" alt="@DynamicModel.Name"/>
+                </div>
+               }
+       
+          <div id="scrollbar1">
+            <div class="scrollbar">
+              <div class="track">
+                <div class="thumb">
+                  <div class="end"></div>
+                </div>
+              </div>
+            </div>
+            <div class="viewport">
+              <div class="overview">
+                  @Html.Raw(@DynamicModel.Description)
+              </div>
+            </div>
+          </div>
+          
+       </section>
+    </section>
+</section>    
+       

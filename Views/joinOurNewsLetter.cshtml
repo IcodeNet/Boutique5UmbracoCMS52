@@ -1,0 +1,45 @@
+@inherits RenderViewPage
+@using System.Web.Mvc.Html;
+@using Umbraco.Cms.Web;
+@{
+	Layout = "_Layout.cshtml";
+	ViewBag.Title = DynamicModel.SiteName ?? CurrentPage.Name;
+	try {ViewBag.BackgroundImage = @Umbraco.GetMediaUrl(Model.Id, "backgroundImage");}catch{}
+}
+<section id="main">
+   <section class="wrapper">
+        <section id="inner_nav">
+          
+        </section>
+     <section id="inner_content">
+   
+       <h2>Join Our Newsletter.</h2>
+        <div class="contact_left">
+     		@Html.Raw(@DynamicModel.ContactInformation)
+       </div>
+        <div class="contact_right">
+            <h2>Your Details</h2>
+            
+            <div style="display:none;" class="error">
+            
+            </div>
+            
+           <!-- <fieldset>
+            <legend>Your details</legend>
+            <p><label  for="name" class="invisible">Name</label><input type="text" class="text" id="name" name="name" placeholder="Name"></p>
+            <p><label  for="email" class="invisible">Email</label><input type="text" class="text" id="email" name="email" placeholder="Email"></p>
+            <p><label  for="company" class="invisible">Company</label><input type="text" class="text" id="company" name="company" placeholder="Company"></p>
+            </fieldset>
+            <fieldset>
+            <legend>Message</legend>
+            <p><label  for="msg" class="invisible">Message</label> <textarea class="text" id="msg" cols="20" rows="2" name="msg" placeholder="Message"></textarea></p>
+            <p><input type="submit" id="button_submit" onclick="" value="Send email" name="submit"> </p>
+            </fieldset>-->
+          @Umbraco.RenderMacro("joinOurNewsletterForm")
+            
+             </div>
+     </section>
+      </section>
+  </section>    
+
+ 

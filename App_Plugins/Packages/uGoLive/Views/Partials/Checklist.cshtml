@@ -1,0 +1,71 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@using ClientDependency.Core.Mvc
+@using Our.Umbraco.uGoLive
+@using Our.Umbraco.uGoLive.Controllers
+@using Umbraco.Framework
+@using Umbraco.Cms.Web
+@using Our.Umbraco.uGoLive.Web
+
+@{
+    var packageFolder = Url.GetPluginsFolder() + "/Packages/uGoLive";
+    
+    Html
+        .RequiresJs(packageFolder +"/Content/Scripts/uGoLive.js")
+        .RequiresCss(packageFolder +"/Content/Styles/uGoLive.css");         
+       
+} 
+
+<script type="text/javascript">
+
+    (function ($) {
+
+    	$(function () {
+
+    	    Our.Umbraco.uGoLive.Checklist.init({
+    	        checkDefs: @Html.ToJsonString(Model),
+    	        checkUrl: '@Url.GetEditorUrl("Check", typeof(uGoLiveEditorController), null)',
+    	        rectifyUrl: '@Url.GetEditorUrl("Rectify", typeof(uGoLiveEditorController), null)'
+    		});
+
+    	});
+
+    })(jQuery)  
+
+</script>
+
+<div class="uGoLive">
+    <div class="property-pane">
+        <div>
+            <div class="propertyItem clearfix" style="width: 100%">
+                <div class="dashboard-wrapper">
+                    <h2>uGoLive Checklist</h2>
+                    <img src="@(packageFolder)/Content/Images/icon.png" alt="uGoLive" class="dashboard-icon" />
+                    <p>The uGoLive checklist is a checklist of the most widely accredited best practises when deploying an Umbraco website. uGoLive performs a complete system check against these practises, and highlights any areas that need attention.</p>
+                    <button id="btnRunChecks" data-bind="click: checkAll, text: checkAllText, css: { disabled: queuedChecks().length > 0 }"></button>
+                    <div class="checks" data-bind="template: { name: 'uGoLiveGroup', foreach: checkGroups }"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="uGoLiveGroup" type="text/html">
+    <h3 data-bind="text: name + ':'"></h3>
+    <div class="property-pane clearfix">
+        <div data-bind="template: { name: 'uGoLiveCheck', foreach: checks }"></div>
+    </div>
+</script>
+
+<script id="uGoLiveCheck" type="text/html">
+    <div class="property-editor clearfix">
+        <div class="property-editor-label">
+            <span data-bind="text: name"></span><br />
+            <small data-bind="text: description"></small>
+        </div>
+        <div class="property-editor-control">
+            <a href="#" title="Run Check" class="check" data-bind="click: check, css: { disabled: status() == 'Checking' || status() == 'Queued' }"><img src="@(packageFolder)/Content/Images/run.png" alt="Run Check" /></a>
+            <a href="#" title="Rectify Check" class="rectify" data-bind="click: rectify, css: { disabled: !(canRectify && status() == '1') }"><img src="@(packageFolder)/Content/Images/cog.png" alt="Rectify Check" /></a>
+            <span class="status ugl${ status }" data-bind="html: message"></span>
+        </div>
+    </div>
+</script>

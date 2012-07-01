@@ -1,0 +1,54 @@
+@inherits RenderViewPage
+@using System.Web.Mvc.Html;
+@using Umbraco.Cms.Web;
+@{
+	Layout = "_Layout.cshtml";
+	ViewBag.Title = DynamicModel.SiteName ?? @DynamicModel.Title;
+	try {ViewBag.BackgroundImage = @Umbraco.GetMediaUrl(Model.Id, "backgroundImage");}catch{}
+	var imageUrl = String.Empty;	 
+	try {imageUrl = @Umbraco.GetMediaUrl(Model.Id, "image");}catch{}
+	 
+}
+
+
+@section Stylesheets
+{
+
+}
+
+@section ScriptsIncludes
+{
+
+}
+
+@section Scripts
+{
+
+}
+
+@section LastScriptsOnPage
+{
+
+}
+
+
+<section id="main">
+   <section class="wrapper">
+        <section id="inner_nav">
+           @Html.Partial("SubNavigation")
+        </section>
+     <section id="inner_content">
+       <h2>@DynamicModel.Title</h2>
+       @if(!string.IsNullOrEmpty(imageUrl)){
+        <div class="image_holder1">
+            <img src="@Umbraco.GetMediaUrl(Model.Id, "image")" alt="@DynamicModel.Name"/>
+        </div>
+       }
+         
+          
+         @Html.Raw(@DynamicModel.Description)
+    
+         </section>
+      </section>
+  </section>    
+       

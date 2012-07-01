@@ -1,0 +1,8 @@
+#scrollbar1 {margin: 20px 0 10px;width: 420px; }
+#scrollbar1 .scrollbar {background: url("../images/tinyScrollbar/bg-scrollbar-track-y.png") no-repeat scroll 0 0 transparent;float: right;position: relative;width: 15px;}
+#scrollbar1 .track {background: url("../images/tinyScrollbar/bg-scrollbar-trackend-y.png") no-repeat scroll 0 100% transparent;height: 100%;position: relative;width: 15px;}
+#scrollbar1 .thumb {background: url("../images/tinyScrollbar/bg-scrollbar-thumb-y.png") no-repeat scroll 50% 100% transparent;cursor: pointer;height: 20px;left: -5px;overflow: hidden;   position: absolute;   top: 0;    width: 25px;}
+#scrollbar1 .thumb .end {background: url("../images/tinyScrollbar/bg-scrollbar-thumb-y.png") no-repeat scroll 50% 0 transparent;height: 5px;overflow: hidden;width: 25px;}
+#scrollbar1 .viewport {height: 320px;overflow: hidden;position: relative;width: 400px;}
+#scrollbar1 .disable { display: none; }
+#scrollbar1 .overview {left: 0;list-style: none outside none;margin: 0;padding: 0;position: absolute;top: 0;}
